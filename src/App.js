@@ -7,6 +7,9 @@ import {
 	Switch,
 } from "react-router-dom/cjs/react-router-dom.min";
 
+// import components
+import Navbar from "./components/Navbar";
+
 // import all pages
 import Create from "./pages/create/Create";
 import Dashboard from "./pages/dashboard/Dashboard";
@@ -19,6 +22,7 @@ function App() {
 		<div className="App">
 			<BrowserRouter>
 				<div className="container">
+					<Navbar />
 					<Switch>
 						<Route exact path="/">
 							<Dashboard />
