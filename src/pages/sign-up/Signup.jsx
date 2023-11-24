@@ -8,9 +8,51 @@ export default function Signup() {
 	const [password, setPassword] = useState("");
 	const [displayName, setDisplayName] = useState("");
 	const [thumbnail, setThumbnail] = useState(null);
+	const [thumbnailError, setThumbnailError] = useState(null);
+
+	// handle form submission
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		console.log(email, password, displayName, thumbnail);
+	};
+
+	// handling file inputs
+	const handleFileChange = (e) => {
+		// reset any previous data
+		setThumbnail(null);
+
+		// sanitize file input
+		const file = e.target.files[0];
+
+		// placeholder file if no image selected
+		if (!file) {
+			setThumbnail(
+				"https://kluppy.com/wp-content/plugins/tutor/assets/images/placeholder-course.svg",
+			);
+			return;
+		}
+
+		// check file is image
+		if (!file.type.includes("image")) {
+			setThumbnailError("Selected file must be an image.");
+			return;
+		}
+
+		// check file size
+		if (file.size > 100000) {
+			setThumbnailError(
+				"File size is too large (files must be less than 100kb).",
+			);
+			return;
+		}
+
+		setThumbnailError(null);
+		setThumbnail(file);
+		console.log("Thumbnail updated.");
+	};
 
 	return (
-		<form className="form">
+		<form className="form" onSubmit={handleSubmit}>
 			<h2>Sign Up</h2>
 			<label>
 				<span>Email:</span>
@@ -47,7 +89,13 @@ export default function Signup() {
 			</label>
 			<label>
 				<span>Profile Picture:</span>
-				<input type="file" name="profile-picture" id="profile-picture" />
+				<input
+					type="file"
+					name="profile-picture"
+					id="profile-picture"
+					onChange={handleFileChange}
+				/>
+				{thumbnailError && <div className="error">{thumbnailError}</div>}
 			</label>
 			<button type="submit" className="btn">
 				Submit
