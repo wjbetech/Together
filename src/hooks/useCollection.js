@@ -23,6 +23,7 @@ export const useCollection = (collection, _query, _orderBy) => {
 		const unsubscribe = ref.onSnapshot(
 			(snapshot) => {
 				const results = [];
+				// biome-ignore lint/complexity/noForEach: <explanation>
 				snapshot.docs.forEach((doc) => {
 					results.push({ ...doc.data(), id: doc.id });
 				});

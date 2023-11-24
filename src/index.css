@@ -2,10 +2,10 @@
 
 /* variables */
 :root {
-  --heading-color: #B0A695;
+  --heading-color: rgb(82, 91, 106);
   --text-color: #F3EEEA;
   --primary-color: #776B5D;
-  --highlight-color: #113946;
+  --highlight-color: rgb(61, 70, 87);
   --bg-color: #f4f4f4;
 }
 

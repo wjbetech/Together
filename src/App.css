@@ -4,3 +4,6 @@
 .App .container{
   flex-grow: 1;
 }
+
+.inner-container {
+  padding: 0 2.75rem;}

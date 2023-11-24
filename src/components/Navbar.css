@@ -1,10 +1,10 @@
 /* items and images */
 .navbar {
   width: 100%;
-  padding: 1rem 2rem;
+  padding: 1.5rem 2.5rem 1.15rem;
   box-sizing: border-box;
-  margin-bottom: 3rem;
-  background-color: var(--primary-color);
+  background-color: var(--heading-color);
+  margin-bottom: 40px;
 
   & ul {
     display: flex;
@@ -38,6 +38,6 @@
   }
 
   & .hover-underline:hover {
-    border-bottom: 2px solid var(--text-color)
+    text-decoration: 2px rgb(240, 240, 240) underline;
   }
 }
