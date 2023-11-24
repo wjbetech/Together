@@ -4,13 +4,13 @@ import { MdOutlineDashboard } from "react-icons/md";
 import { IoCreate } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
 
-export default function Sidebar() {
+export default function Sidebar({ user }) {
 	return (
 		<div className="sidebar">
 			<div className="sidebar-content">
 				<div className="user">
 					{/* avatar + username */}
-					<p>Hi, User</p>
+					<p>Hi, {user}</p>
 				</div>
 				<nav className="links">
 					<ul>

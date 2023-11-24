@@ -1,6 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
+import "firebase/firebase-storage";
 
 // firebase config block from firebase console
 const firebaseConfig = {
@@ -18,8 +19,9 @@ firebase.initializeApp(firebaseConfig);
 // init services for our project
 const togetherFirestore = firebase.firestore();
 const togetherAuth = firebase.auth();
+const togetherStorage = firebase.storage();
 
 // timestamp func
 const timestamp = firebase.firestore.Timestamp;
 
-export { togetherFirestore, togetherAuth, timestamp };
+export { togetherFirestore, togetherAuth, togetherStorage, timestamp };

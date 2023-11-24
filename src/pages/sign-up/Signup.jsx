@@ -1,6 +1,7 @@
 import React from "react";
 import "./Signup.css";
 import { useState } from "react";
+import { useSignup } from "../../hooks/useSignup";
 
 export default function Signup() {
 	// state setters
@@ -10,10 +11,14 @@ export default function Signup() {
 	const [thumbnail, setThumbnail] = useState(null);
 	const [thumbnailError, setThumbnailError] = useState(null);
 
+	// deconstruct hooks
+	const { signup, isPending, error } = useSignup();
+
 	// handle form submission
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(email, password, displayName, thumbnail);
+		// !! order is important !!
+		signup(email, password, displayName, thumbnail);
 	};
 
 	// handling file inputs
@@ -97,9 +102,16 @@ export default function Signup() {
 				/>
 				{thumbnailError && <div className="error">{thumbnailError}</div>}
 			</label>
-			<button type="submit" className="btn">
-				Submit
-			</button>
+			{isPending ? (
+				<button disabled type="submit" className="btn">
+					Signing Up..
+				</button>
+			) : (
+				<button type="submit" className="btn">
+					Sign Up
+				</button>
+			)}
+			{error && <div className="error">{error}</div>}
 		</form>
 	);
 }
