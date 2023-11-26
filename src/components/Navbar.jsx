@@ -2,8 +2,12 @@ import React from "react";
 import "./Navbar.css";
 import { IoPeopleCircle } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { useLogout } from "../hooks/useLogout";
 
 export default function Navbar() {
+	// grab the logout functionality from useLogout hook
+	const { logout, isPending } = useLogout();
+
 	return (
 		<div className="navbar">
 			<ul>
@@ -24,7 +28,17 @@ export default function Navbar() {
 				<li className="hover-underline">
 					<Link to="/sign-up">Signup</Link>
 				</li>
-				<li className="btn">Logout</li>
+				<li>
+					{!isPending ? (
+						<button className="btn" type="button" onClick={logout}>
+							Logout
+						</button>
+					) : (
+						<button className="btn" type="button" onClick={logout} disabled>
+							Logging Out..
+						</button>
+					)}
+				</li>
 			</ul>
 		</div>
 	);
