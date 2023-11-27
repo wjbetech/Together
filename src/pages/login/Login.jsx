@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Login.css";
+import { useLogin } from "../../hooks/useLogin";
 
 export default function Login() {
+	// state setters
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+
+	// deconstruct login hook
+	const { login, isPending, error } = useLogin();
+
+	// handle submitting the login form
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		login(email, password);
+	};
+
 	return (
 		<form className="form" onSubmit={handleSubmit}>
 			<h2>Login</h2>

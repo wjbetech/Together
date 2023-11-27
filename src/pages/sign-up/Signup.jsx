@@ -11,7 +11,7 @@ export default function Signup() {
 	const [thumbnail, setThumbnail] = useState(null);
 	const [thumbnailError, setThumbnailError] = useState(null);
 
-	// deconstruct hooks
+	// deconstruct the signup hook
 	const { signup, isPending, error } = useSignup();
 
 	// handle form submission
@@ -21,7 +21,7 @@ export default function Signup() {
 		signup(email, password, displayName, thumbnail);
 	};
 
-	// handling file inputs
+	// sanitizing file inputs
 	const handleFileChange = (e) => {
 		// reset any previous data
 		setThumbnail(null);

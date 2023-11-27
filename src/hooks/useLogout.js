@@ -2,19 +2,20 @@ import { useEffect, useState } from "react";
 import { togetherAuth, togetherFirestore } from "../firebase/config";
 import { useAuthContext } from "./useAuthContext";
 
-export const useLogout = async () => {
+export const useLogout = () => {
 	const [isCancelled, setIsCancelled] = useState(false);
 	const [error, setError] = useState(null);
 	const [isPending, setIsPending] = useState(false);
-	const { dispatch, user } = useAuthContext();
+	const { dispatch } = useAuthContext();
 
+	// the logout function to be used in Logout.jsx
 	const logout = async () => {
 		setError(null);
 		setIsPending(true);
 
 		try {
 			// update online status
-			const { uid } = user;
+			const { uid } = togetherAuth.currentUser;
 			await togetherFirestore.collection("users").doc(uid).update({
 				online: false,
 			});
