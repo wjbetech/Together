@@ -1,12 +1,5 @@
 import "./App.css";
 
-// import react-router-dom functionality
-import {
-	BrowserRouter,
-	Route,
-	Switch,
-} from "react-router-dom/cjs/react-router-dom.min";
-
 // import components
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
@@ -18,34 +11,57 @@ import Login from "./pages/login/Login";
 import ProjectDetails from "./pages/project-details/ProjectDetails";
 import Signup from "./pages/sign-up/Signup";
 
+// import react-router-dom functionality
+import {
+	BrowserRouter,
+	Route,
+	Switch,
+	Redirect,
+} from "react-router-dom/cjs/react-router-dom.min";
+
+// auth for conditional link rendering
+import { useAuthContext } from "./hooks/useAuthContext";
+
 function App() {
+	const { user, authIsReady } = useAuthContext();
+
 	return (
 		<div className="App">
-			<BrowserRouter>
-				<Sidebar />
-				<div className="container">
-					<Navbar />
-					<div className="inner-container">
-						<Switch>
-							<Route exact path="/">
-								<Dashboard />
-							</Route>
-							<Route path="/create">
-								<Create />
-							</Route>
-							<Route path="/login">
-								<Login />
-							</Route>
-							<Route path="/sign-up">
-								<Signup />
-							</Route>
-							<Route path="/projects/:id">
-								<ProjectDetails />
-							</Route>
-						</Switch>
+			{authIsReady && (
+				<BrowserRouter>
+					<Sidebar />
+					<div className="container">
+						<Navbar />
+						<div className="inner-container">
+							<Switch>
+								<Route exact path="/">
+									{/* conditionally render dashboard 
+									only if a user is logged in */}
+									{user && <Dashboard />}
+									{/* otherwise redirect to login */}
+									{!user && <Redirect to="/login" />}
+								</Route>
+								<Route path="/create">
+									{!user && <Redirect to="/login" />}
+									{user && <Create />}
+								</Route>
+								<Route path="/login">
+									{user && <Redirect to="/" />}
+									{!user && <Login />}
+								</Route>
+								<Route path="/sign-up">
+									{user && <Redirect to="/" />}
+									{!user && <Signup />}
+								</Route>
+								<Route path="/projects/:id">
+									{!user && <Redirect to="/login" />}
+									{user && <ProjectDetails />}
+								</Route>
+							</Switch>
+						</div>
 					</div>
-				</div>
-			</BrowserRouter>
+				</BrowserRouter>
+			)}
 		</div>
 	);
 }
