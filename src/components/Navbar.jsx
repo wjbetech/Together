@@ -40,11 +40,14 @@ export default function Navbar() {
 				{/* only render Logout when there is an actively logged in user */}
 				{user && (
 					<>
-						<li>
+						<li className="user">
 							{!isPending && (
-								<button type="submit" className="btn" onClick={logout}>
-									Logout
-								</button>
+								<>
+									<p className="display-name">{user.displayName}</p>
+									<button type="submit" className="btn" onClick={logout}>
+										Logout
+									</button>
+								</>
 							)}
 							{isPending && (
 								<button type="submit" className="btn" disabled>

@@ -3,6 +3,7 @@ import "./App.css";
 // import components
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
+import OnlineUsers from "./components/OnlineUsers";
 
 // import all pages
 import Create from "./pages/create/Create";
@@ -60,6 +61,7 @@ function App() {
 							</Switch>
 						</div>
 					</div>
+					{user && <OnlineUsers />}
 				</BrowserRouter>
 			)}
 		</div>
