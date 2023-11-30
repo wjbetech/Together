@@ -9,16 +9,11 @@ import OnlineUsers from "./components/OnlineUsers";
 import Create from "./pages/create/Create";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Login from "./pages/login/Login";
-import ProjectDetails from "./pages/project-details/ProjectDetails";
+import TaskDetails from "./pages/task-details/TaskDetails";
 import Signup from "./pages/sign-up/Signup";
 
 // import react-router-dom functionality
-import {
-	BrowserRouter,
-	Route,
-	Switch,
-	Redirect,
-} from "react-router-dom/cjs/react-router-dom.min";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
 // auth for conditional link rendering
 import { useAuthContext } from "./hooks/useAuthContext";
@@ -54,9 +49,9 @@ function App() {
 									{user && <Redirect to="/" />}
 									{!user && <Signup />}
 								</Route>
-								<Route path="/projects/:id">
+								<Route path="/tasks/:id">
 									{!user && <Redirect to="/login" />}
-									{user && <ProjectDetails />}
+									{user && <TaskDetails />}
 								</Route>
 							</Switch>
 						</div>

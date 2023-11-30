@@ -15,7 +15,7 @@ export default function Task({ doc }) {
 
 	return (
 		<div className="projects">
-			<Link to={`/projects/${doc.id}`}>
+			<Link to={`/tasks/${doc.id}`}>
 				<div className="project-card">
 					<div className="title">
 						<h3 className="task-name">{doc.name}</h3>
