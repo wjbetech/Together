@@ -1,0 +1,82 @@
+a {
+  text-decoration: none;
+}
+
+.projects {
+  width: 98%;
+}
+
+.project-card {
+  padding: 15px;
+  margin: 10px 0;
+  border: 2px solid gray;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 4px;
+}
+
+.project-card:hover {
+  cursor: pointer;
+  background-color: var(--highlight-color);
+  border-color: #fff;
+  color: rgb(216, 216, 216);
+
+  & .assigned {
+    color: rgb(216, 216, 216);
+  }
+
+  & .task-name {
+    color: rgb(216, 216, 216);
+  }
+
+  & .details { 
+    color: rgb(216, 216, 216);
+  }
+}
+
+.title {
+  display: flex;
+  align-items: baseline; 
+  justify-content: space-between;
+}
+
+.task-name {
+  font-size: 1.5rem;
+  letter-spacing: -1px;
+  color: rgb(64, 64, 64);
+}
+
+.assigned-to {
+  padding-top: 15px;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.created-by {
+  color: gray;
+  font-size: 0.8rem;
+  width: 40%;
+  text-align: end;
+}
+
+.category {
+  font-style: italic;
+  margin-bottom: 20px;
+  font-size: 0.8em;
+}
+
+.details {
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  color: rgb(64, 64, 64);
+}
+
+.comments {
+  font-size: 0.9em;
+  font-style: italic;
+}
+
+hr {
+  margin: 20px auto;
+  background-color: #fff;
+  color: #f1f1f1;
+}
