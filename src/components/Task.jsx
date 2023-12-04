@@ -23,7 +23,9 @@ export default function Task({ doc }) {
 					<hr />
 					<p className="category">{doc.category}</p>
 					<p className="details">{doc.details}</p>
-					<span className="comments">Comments: {doc.comments.length}</span>
+					<span className="comments">
+						Comments: {doc.comments.length > 0 ? doc.comments.length : "None"}
+					</span>
 					<hr />
 					<p className="assigned-to">{users}</p>
 					<p className="due-by">Due: {doc.dueDate.toDate().toDateString()}</p>
